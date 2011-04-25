@@ -1,0 +1,9 @@
+{   "name": "tweetstream"
+  , "version": "0.0.1"
+  , "description": "node.js + backbone + twitter api + socket.io + express = tweetstream"
+  , "keywords": ["twitter", "socket.io", "express"]
+  , "author": "mkuklis <michal.kuklis@gmail.com>"
+  , "dependencies": {"twitter-node": "0.0.2", "socket.io": "0.6.17", "express": "2.2.2", "ejs": "0.4.1"}
+  , "main": "index"
+  , "engines": { "node": "0.4.x" }
+}
