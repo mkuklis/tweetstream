@@ -1,6 +1,3 @@
-require("./node_modules")
-
-// twitter-node does not modify GLOBAL, that's so rude
 var TwitterNode = require('twitter-node').TwitterNode
   , sys = require('sys')
   , express = require('express')
@@ -25,15 +22,13 @@ socket.on('connection', function(client){
   client.on('message', function(){
     console.log('connected');
   });
-  client.on('disconnect', function(){
-
-  }); 
+  client.on('disconnect', function(){}); 
 });
 
 // twitter node
 var twit = new TwitterNode({
-  user: 'mkuklis', 
-  password: '4pancerniPIES',
+  user: 'TWITTER_USER', 
+  password: 'TWITTER_PASSWORD',
   track: ['summer']
 });
 
