@@ -1,4 +1,4 @@
-require("./vendor")
+require("./node_modules")
 
 // twitter-node does not modify GLOBAL, that's so rude
 var TwitterNode = require('twitter-node').TwitterNode
