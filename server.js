@@ -1,3 +1,6 @@
+require.paths.unshift("node_modules/express/lib")
+require.paths.unshift("node_modules/twitter-node/lib")
+
 // twitter-node does not modify GLOBAL, that's so rude
 var TwitterNode = require('twitter-node').TwitterNode
   , sys = require('sys')
@@ -15,7 +18,7 @@ app.use(express.static(__dirname + '/public'));
   app.get('/', function(req, res) {
   res.render('tweets');
 });
-app.listen(port);
+app.listen(parseInt(port));
 
 // socket.io 
 var socket = io.listen(app); 
