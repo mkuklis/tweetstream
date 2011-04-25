@@ -1,5 +1,10 @@
+require.paths.unshift("node_modules/connect/lib")
+require.paths.unshift("node_modules/ejs/lib")
+require.paths.unshift("node_modules/mime/lib")
+require.paths.unshift("node_modules/qs/lib")
 require.paths.unshift("node_modules/express/lib")
 require.paths.unshift("node_modules/twitter-node/lib")
+require.paths.unshift("node_modules/socket.io/lib")
 
 // twitter-node does not modify GLOBAL, that's so rude
 var TwitterNode = require('twitter-node').TwitterNode
