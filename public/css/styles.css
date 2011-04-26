@@ -1,0 +1,54 @@
+* {
+
+}
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.ui-tooltip-light {
+  -webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.ui-tooltip-light .ui-tooltip-content {
+  font-size: 16px;
+  padding: 7px;
+  width: 350px;
+  font-weight: normal;
+  font-family: Georgia,Palatino,Helvetica Neue,Helvetica,Arial,sans-serif!important;
+  -webkit-font-smoothing: antialiased;
+  line-height:20px;
+}
+
+/*
+#tweets {
+  position: absolute;
+  z-index: 1;
+  top:0px;
+  right: 0px;
+  width: 500px;
+  height: 100%;
+  background: #000;
+  color: #000;
+  opacity:0.2;
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+
+#tweets li {
+  padding: 10px;
+  border-bottom: 1px solid #000;
+}
+*/
