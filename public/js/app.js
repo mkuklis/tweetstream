@@ -119,7 +119,8 @@
             title: { text: '', button: false }
           },
           position: { my: 'bottom center', at: 'top center' },
-          show: { ready: true },
+          show: { ready: true, effect: { type: 'fade', length: 0 } },
+          hide: { fixed: true, delay: 0 },
           style: { classes: 'ui-tooltip-shadow ui-tooltip-light' }
         };
         

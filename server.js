@@ -26,7 +26,7 @@ socket.on('connection', function(client){
 
 // twitter node
 var twit = new TwitterNode({
-  user: 'LOGIN', 
+  user: 'USERNAME', 
   password: 'PASSWORD',
   track: ['nyc']
 });
