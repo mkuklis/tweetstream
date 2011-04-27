@@ -10,6 +10,10 @@
     var socket = new io.Socket()
       , tweets = new Tweets()
       , mapView = new MapView({collection: tweets, center: options.center});
+
+    socket.on('connect', function() {
+       socket.send('hello'); 
+    });
     
     // bind to message to listen for incoming tweets
     socket.on('message', function(tweet) {

@@ -26,8 +26,8 @@ socket.on('connection', function(client){
 
 // twitter node
 var twit = new TwitterNode({
-  user: 'USERNAME', 
-  password: 'PASSWORD'
+  user: 'tweetstreamnode', 
+  password: '123qwe'
 });
 
 // follow tweets from NYC
