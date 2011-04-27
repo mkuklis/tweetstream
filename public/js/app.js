@@ -26,7 +26,7 @@
         model = this.queue.shift();
         this.trigger('dequeue', model);
       }
-      return null;
+      return model;
     }
   });
   
@@ -109,7 +109,7 @@
       _.bindAll(this, 'renderMarker', 'showTip');
 
       this.queue = this.options.queue;      
-      this.queue.bind('dequeue', this.renderMarker, 2000);
+      this.queue.bind('dequeue', this.renderMarker);
 
       // init google map
       this.el.gmap3({
