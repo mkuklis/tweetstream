@@ -27,8 +27,7 @@ socket.on('connection', function(client){
 // twitter node
 var twit = new TwitterNode({
   user: 'USERNAME', 
-  password: 'PASSWORD',
-  track: ['nyc']
+  password: 'PASSWORD'
 });
 
 // follow tweets from NYC
@@ -41,14 +40,5 @@ twit
   })
   .addListener('tweet', function(tweet) {
     socket.broadcast(tweet);
-  })
-  .addListener('limit', function(limit) {
-    sys.puts("LIMIT: " + sys.inspect(limit));
-  })
-  .addListener('delete', function(del) {
-    sys.puts("DELETE: " + sys.inspect(del));
-  })
-  .addListener('end', function(resp) {
-    sys.puts("wave goodbye... " + resp.statusCode);
   })
   .stream();
