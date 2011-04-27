@@ -13,7 +13,7 @@
       speed: 20
     };
       
-    return this.each(function() {
+    return this.each(function(el) {
       if (options) {
         $.extend(settings, options);
       }
@@ -31,7 +31,7 @@
         else {
           clearInterval(interval);
           // execute after callback if given
-          options.afterCallback && options.afterCallback($(that), settings.text);
+          options.afterCallback && options.afterCallback.apply(that, [settings.text]);
         }
       }, settings.speed);
     });

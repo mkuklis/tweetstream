@@ -1,6 +1,38 @@
 // TweetStream 
 (function() {
 
+  // simple event based queue implementation
+  // based on JavaScript array
+  var Queue = function() {
+    this.queue = [];
+  }
+
+  // give Queue some events
+  _.extend(Queue.prototype, Backbone.Events, {
+    model: Backbone.Model,
+    
+    enqueue: function(model) {
+      if (!(model instanceof Backbone.Model)) {
+        model = new this.model(model);
+      }
+
+      this.queue.push(model);
+      this.trigger('enqueue', model);
+    },
+
+    dequeue: function() {
+      var model = null;
+      if (this.queue.length > 0) {
+        model = this.queue.shift();
+        this.trigger('dequeue', model);
+      }
+      return null;
+    }
+  });
+  
+  // add extend to Queue
+  Queue.extend = Backbone.Model.extend;
+
   // TweetStream namespce
   var TweetStream = this.TweetStream = {};
 
@@ -9,7 +41,7 @@
     // setup socket.io
     var socket = new io.Socket()
       , tweets = new Tweets()
-      , mapView = new MapView({collection: tweets, center: options.center});
+      , mapView = new MapView({queue: tweets, center: options.center});
 
     socket.on('connect', function() {
        socket.send('hello'); 
@@ -19,9 +51,15 @@
     socket.on('message', function(tweet) {
       // check if tweet has associated geo object
       if (tweet.geo) {
-        tweets.add(tweet);
+        tweets.enqueue(tweet);
       }
     });
+
+    // internal loop which dequeues element
+    // from the queue
+    setInterval(function() {
+      tweets.dequeue();
+    }, 5000);
 
     // connect to socket
     socket.connect();
@@ -29,8 +67,6 @@
 
   // Tweet model
   var Tweet = Backbone.Model.extend({
-    collection: Tweets,
-
     // few helpers based on http://www.simonwhatley.co.uk/examples/twitter/prototype/
     parseURL: function(text) {
       return text.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/g, function(url) {
@@ -57,8 +93,8 @@
     }
   });
 
-  // Tweets collection
-  var Tweets = Backbone.Collection.extend({
+  // Tweets queue
+  var Tweets = Queue.extend({
     model: Tweet
   });
 
@@ -66,13 +102,15 @@
   var MapView = Backbone.View.extend({
     // consts
     MARKER_IMAGE: '/img/marker.png',
-    QTIP_TEXT_TEMPLATE: '<img src="<%= image %>" /><a href="http://twitter.com/<%=name%>">@<%=name%><a/><br /><div class="ui-tooltip-text"></div>',
+    QTIP_TEXT_TEMPLATE: '<img src="<%= image %>" /><a target="_blank" href="http://twitter.com/<%=name%>">@<%=name%><a/><br /><div class="ui-tooltip-text"></div>',
     
     el: $("#map"),
     initialize: function() {
       _.bindAll(this, 'renderMarker', 'showTip');
-      this.collection.bind('add', _.debounce(this.renderMarker, 2000));
-      
+
+      this.queue = this.options.queue;      
+      this.queue.bind('dequeue', this.renderMarker, 2000);
+
       // init google map
       this.el.gmap3({
         action: 'init',
@@ -110,6 +148,7 @@
     },
 
     // shows tooltip over marker
+    // TODO: refactor
     showTip: function(tweet) {
       var self = this
         , user = tweet.get('user');
@@ -134,11 +173,11 @@
         setTimeout(function() {
           $('div.ui-tooltip-text:visible', this.el).typemachine({
             text: tweet.get('text'), 
-            afterCallback: function(el, text) {
-              el.html(tweet.linkify());
+            afterCallback: function(text) {
+              $(this).html(tweet.linkify());
             }
           });
-        }, 300);
+        }, 500);
       }, 500); 
     }
   });
