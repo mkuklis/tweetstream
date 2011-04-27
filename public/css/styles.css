@@ -22,13 +22,26 @@ html, body {
 }
 
 .ui-tooltip-light .ui-tooltip-content {
-  font-size: 16px;
+  font-size: 14px;
   padding: 7px;
   width: 350px;
+  min-height: 60px;
   font-weight: normal;
   font-family: Georgia,Palatino,Helvetica Neue,Helvetica,Arial,sans-serif!important;
   -webkit-font-smoothing: antialiased;
   line-height:20px;
+}
+
+.ui-tooltip-light .ui-tooltip-content img {
+  width: 48px;
+  border: 1px solid #eee; 
+  float: left; 
+  padding:3px; 
+  margin-right: 5px;
+}
+
+.ui-tooltip-light .ui-tooltip-content a {
+  text-decoration: none;
 }
 
 /*
