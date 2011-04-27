@@ -15,16 +15,17 @@ Client:
 * [Backbone.js](http://documentcloud.github.com/backbone/)
 * [gmap3](http://gmap3.net/)
 
-## Demo
-
-[http://tweetstream.cloudfoundry.com](http://tweetstream.cloudfoundry.com/)
-
 ## Installation
 
 In order to run it make sure you have [Node.js](http://nodejs.org) and [npm](http://npmjs.org/) installed first.
 
     $ npm bundle
     $ node ./server.js
+
+## Demo
+
+[http://tweetstream.cloudfoundry.com](http://tweetstream.cloudfoundry.com/)
+
 
 ## License 
 
