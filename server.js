@@ -17,7 +17,7 @@ app.listen(port);
 
 // socket.io 
 var socket = io.listen(app); 
-socket.on('connection', function(client){ 
+socket.on('connection', function(client) { 
   client.on('message', function(){
     console.log('connected');
   });
@@ -26,8 +26,8 @@ socket.on('connection', function(client){
 
 // twitter node
 var twit = new TwitterNode({
-  user: 'USERNAME', 
-  password: 'PASSWORD'
+  user: 'tweetstreamnode', 
+  password: '123qwe'
 });
 
 // follow tweets from NYC
