@@ -19,6 +19,7 @@ Client:
 
 Set username and password for your twitter account in config/config.js
 In order to run it make sure you have [Node.js](http://nodejs.org) and [npm](http://npmjs.org/) installed first.
+
     $ npm bundle
     $ node ./server.js
 
