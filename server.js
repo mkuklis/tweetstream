@@ -3,11 +3,10 @@ var TwitterNode = require('twitter-node').TwitterNode
   , express = require('express')
   , io = require('socket.io')
   , port = parseInt(process.env.VCAP_APP_PORT || 3000);
-
-// settings
-var Settings = require('settings');
-var file = __dirname + '/config/config.js';
-var settings = new Settings(file).getEnvironment(process.env.NODE_ENV || "dev");
+  // settings
+  , Settings = require('settings');
+  , file = __dirname + '/config/config.js';
+  , settings = new Settings(file).getEnvironment(process.env.NODE_ENV || "dev");
 
 // express
 var app = express.createServer();
