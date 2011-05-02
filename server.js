@@ -3,7 +3,12 @@ var TwitterNode = require('twitter-node').TwitterNode
   , express = require('express')
   , io = require('socket.io')
   , port = parseInt(process.env.VCAP_APP_PORT || 3000);
- 
+
+// settings
+var Settings = require('settings');
+var file = __dirname + '/config/config.js';
+var settings = new Settings(file).getEnvironment(process.env.NODE_ENV || "dev");
+
 // express
 var app = express.createServer();
 app.register('.html', require('ejs'));
@@ -26,8 +31,8 @@ socket.on('connection', function(client) {
 
 // twitter node
 var twit = new TwitterNode({
-  user: 'tweetstreamnode', 
-  password: '123qwe'
+  user: settings.twitter_user, 
+  password: settings.twitter_password
 });
 
 // follow tweets from NYC
