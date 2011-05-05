@@ -25,7 +25,7 @@ In order to run it make sure you have [Node.js](http://nodejs.org) and [npm](htt
 
 ## Demo
 
-[http://tweetstream.cloudfoundry.com](http://tweetstream.cloudfoundry.com/)
+[http://mkuklis.no.de](http://mkuklis.no.de)
 
 
 ## License 
