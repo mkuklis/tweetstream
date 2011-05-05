@@ -1,11 +1,16 @@
 exports.common = {};
 
 exports.dev = {
-  twitter_user: 'tweetstreamnode',
-  twitter_password: '123qweasd'
+  twitter_user: 'username',
+  twitter_password: 'password'
+};
+
+exports.test = {
+  twitter_user: 'username',
+  twitter_password: 'password'
 };
 
 exports.production = {
-  twitter_user: 'tweetstreamnode',
-  twitter_password: '123qweasd'
+  twitter_user: 'username',
+  twitter_password: 'password'
 };
